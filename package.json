@@ -2,7 +2,12 @@
   "name": "fcc-timestamp",
   "version": "0.0.1",
   "description": "A microservice project for FreeCodeCamp APIs and Microservices Certification",
-  "main": "index.js",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.x.x",
+    "mongodb": "^3.6.2",
+    "mongoose": "^5.10.6"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,8 +27,5 @@
   "bugs": {
     "url": "https://github.com/kyosheek/fcc-apimicro-timestamp/issues"
   },
-  "homepage": "https://github.com/kyosheek/fcc-apimicro-timestamp#readme",
-  "dependencies": {
-    "express": "^4.17.1"
-  }
+  "homepage": "https://github.com/kyosheek/fcc-apimicro-timestamp#readme"
 }
