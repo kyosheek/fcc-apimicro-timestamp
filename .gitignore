@@ -3,3 +3,4 @@ node_modules
 .env
 .sass-cache
 .DS_store
+*.pem
