@@ -19,26 +19,28 @@ app.get('/', (req, res) => {
 
 app.route('/api/timestamp/:date_string?')
 .get((req, res) => {
-  const { date_string } = req.params;
+  let { date_string } = req.params;
+  let unix = 0, utc = "", error = "";
+  // handle date_string
   if (date_string) {
-    let timestamp = Date.parse(date_string);
-    if (!isNaN(timestamp)) {
+    date_string = (Number(date_string) == date_string) ? Number(date_string) : date_string;
+    if (!isNaN(new Date(date_string))) {
       const date = new Date(date_string);
-      res.send({
-        "unix": date.getTime(),
-        "utc": date.toUTCString()
-      });
+      unix = date.getTime();
+      utc = date.toUTCString();
     } else {
-      res.send({
-        "error": "Invalid date"
-      });
+      error = "Invalid Date";
     }
   } else {
     const date = new Date();
-    res.send({
-      "unix": date.getTime(),
-      "utc": date.toUTCString()
-    });
+    unix = date.getTime();
+    utc = date.toUTCString();
+  }
+  // send result
+  if (error.length > 0) {
+    res.send({ error });
+  } else {
+    res.send({ unix, utc });
   }
 });
 
